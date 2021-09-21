@@ -33,7 +33,9 @@ namespace ConverterApplication
                 var source = SaveToFolder;
                 var youtube = YouTube.Default;
                 var vid = youtube.GetVideo(VideoURL);
-                File.WriteAllBytes(source, vid.GetBytes());
+
+                Thread t = new Thread(() => File.WriteAllBytes(source, vid.GetBytes()));
+                t.Start();
             }
             catch (Exception e)
             {
@@ -41,20 +43,6 @@ namespace ConverterApplication
             }
         }
 
-        //async Task WriteBytesAsync(string filePath, byte[] bytes)
-        //{
-        //    UnicodeEncoding uniencoding = new UnicodeEncoding();
-        //    string filename = $"{filePath}";
-
-        //    byte[] result = bytes;
-
-        //    using (FileStream SourceStream = File.Open(filename, FileMode.OpenOrCreate))
-        //    {
-        //        SourceStream.Seek(0, SeekOrigin.End);
-        //        await SourceStream.WriteAsync(result, 0, result.Length);
-        //    }
-        //}
-        //Dev
         private string SavePath()
         {
             SaveFileDialog sfd = new SaveFileDialog();
