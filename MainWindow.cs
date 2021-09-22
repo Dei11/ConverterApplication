@@ -1,9 +1,12 @@
-﻿using System;
-using System.ComponentModel;
+﻿using MediaToolkit;
+using MediaToolkit.Model;
+using MediaToolkit.Options;
+using System;
 using System.IO;
+using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VideoLibrary;
 
@@ -33,10 +36,16 @@ namespace ConverterApplication
             {
                 var source = SaveToFolder;
                 var youtube = YouTube.Default;
-                var vid = youtube.GetVideo(VideoURL);
 
-                Thread t = new Thread(() => File.WriteAllBytes(source, vid.GetBytes()));
+                var videos = youtube.GetAllVideos(VideoURL);
+                var resolution = videos.FirstOrDefault(v => v.Resolution == 2160);
+
+                var video = youtube.GetVideo(VideoURL);
+
+
+                Thread t = new Thread(() => File.WriteAllBytes(source, video.GetBytes()));
                 t.Start();
+                //btnDownload.Text = $"{video.AudioBitrate}";
             }
             catch (Exception e)
             {
@@ -71,7 +80,7 @@ namespace ConverterApplication
         {
             try
             {
-                var youtube = YouTube.Default;
+                var youtube = YouTube.Default;  
                 var vid = youtube.GetVideo(VideoURL);
             }
             catch (Exception e)
@@ -80,6 +89,17 @@ namespace ConverterApplication
                 return false;
             }
             return true;
+        }
+
+
+        private void Convert(string ConvertFile)
+        {
+
+        }
+
+        private void btnOpen_Click_1(object sender, EventArgs e)
+        {
+            Convert(SavePath());
         }
     }
 }
