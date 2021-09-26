@@ -37,8 +37,6 @@ namespace ConverterApplication
             this.btnDownload = new System.Windows.Forms.Button();
             this.cmbBox = new System.Windows.Forms.ComboBox();
             this.picBoxLogo = new System.Windows.Forms.PictureBox();
-            this.txtBoxConvert = new System.Windows.Forms.TextBox();
-            this.btnOpen = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -117,37 +115,11 @@ namespace ConverterApplication
             this.picBoxLogo.TabIndex = 0;
             this.picBoxLogo.TabStop = false;
             // 
-            // txtBoxConvert
-            // 
-            this.txtBoxConvert.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.txtBoxConvert.Location = new System.Drawing.Point(12, 259);
-            this.txtBoxConvert.Multiline = true;
-            this.txtBoxConvert.Name = "txtBoxConvert";
-            this.txtBoxConvert.Size = new System.Drawing.Size(154, 30);
-            this.txtBoxConvert.TabIndex = 7;
-            // 
-            // btnOpen
-            // 
-            this.btnOpen.BackColor = System.Drawing.Color.DarkOrange;
-            this.btnOpen.FlatAppearance.BorderSize = 0;
-            this.btnOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpen.Font = new System.Drawing.Font("Segoe UI", 8F);
-            this.btnOpen.ForeColor = System.Drawing.Color.White;
-            this.btnOpen.Location = new System.Drawing.Point(172, 259);
-            this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(82, 32);
-            this.btnOpen.TabIndex = 8;
-            this.btnOpen.Text = "Download";
-            this.btnOpen.UseVisualStyleBackColor = false;
-            this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click_1);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(501, 301);
-            this.Controls.Add(this.btnOpen);
-            this.Controls.Add(this.txtBoxConvert);
             this.Controls.Add(this.cmbBox);
             this.Controls.Add(this.btnDownload);
             this.Controls.Add(this.txtBoxFileName);
@@ -176,8 +148,6 @@ namespace ConverterApplication
         private System.Windows.Forms.TextBox txtBoxFileName;
         private System.Windows.Forms.Button btnDownload;
         private System.Windows.Forms.ComboBox cmbBox;
-        private System.Windows.Forms.TextBox txtBoxConvert;
-        private System.Windows.Forms.Button btnOpen;
     }
 }
 

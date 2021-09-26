@@ -1,12 +1,10 @@
-﻿using MediaToolkit;
-using MediaToolkit.Model;
-using MediaToolkit.Options;
-using System;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using VideoLibrary;
 
@@ -22,30 +20,22 @@ namespace ConverterApplication
         private void btnDownload_Click(object sender, EventArgs e)
         {
             string videoUrl = txtBoxUrl.Text;
-            string MP3Name = txtBoxFileName.Text;
 
             if(CheckUrl(videoUrl) == true)
             {
-                SaveMP3(SavePath(), videoUrl, MP3Name);
+                SaveMP3(SavePath(), videoUrl);
             }
         }
 
-        private void SaveMP3(string SaveToFolder, string VideoURL, string MP3Name)
+        private void SaveMP3(string SaveToFolder, string VideoURL)
         {
             try
             {
-                var source = SaveToFolder;
                 var youtube = YouTube.Default;
-
-                var videos = youtube.GetAllVideos(VideoURL);
-                var resolution = videos.FirstOrDefault(v => v.Resolution == 2160);
-
                 var video = youtube.GetVideo(VideoURL);
 
-
-                Thread t = new Thread(() => File.WriteAllBytes(source, video.GetBytes()));
+                Thread t = new Thread(() => File.WriteAllBytes(SaveToFolder, video.GetBytes()));
                 t.Start();
-                //btnDownload.Text = $"{video.AudioBitrate}";
             }
             catch (Exception e)
             {
@@ -91,15 +81,5 @@ namespace ConverterApplication
             return true;
         }
 
-
-        private void Convert(string ConvertFile)
-        {
-
-        }
-
-        private void btnOpen_Click_1(object sender, EventArgs e)
-        {
-            Convert(SavePath());
-        }
     }
 }
